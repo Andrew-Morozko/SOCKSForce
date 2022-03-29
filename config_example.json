@@ -1,0 +1,40 @@
+{
+	// These parameters are defaults for every route and could be overriden
+	// by the configuration in the "routes" block
+    "defaults": {
+		// Required, address of the SOCKS5 server which receives the redirected connections
+		// if port is unspecified then the default SOCKS5 port 1080 is used
+        "socks": "host/ip[:port]",
+		// IP address that listens for the connections
+		// Default: "127.0.0.1", use "0.0.0.0" to listen on all interfaces
+		"listen_ip": "127.0.0.1",
+		// Method of determining the destination of the request
+		// "http_host" [default for listen_port 80] - inspect the http request,
+		// and use as destination the value of the "Host" header
+		// "tls_sni" [default for listen_port 443] - inspect the TLS(HTTPS) request,
+		// and use as destination the value of the "SNI" field
+		// "host/ip[:port]" - forward the requests to the specified address
+		// If port is unspecified then the listen_port is used
+		"destination": "",
+		// Timeout for connecting to proxy server in go format ("72h3m0.5s")
+		// Default: "10s". "0s" - disables the timeout
+		"connect_timeout": "10s",
+		// Timeout for proxying the coonection in go format ("72h3m0.5s")
+		// Default: "0s"
+		"proxy_timeout": "0s"
+    },
+	// All configuration options from "defaults" could be overriden here
+    "routes": [
+        {
+			// Required, specifies the port to listen for the connections.
+            "listen_port": 80
+        },
+        {
+            "listen_port": 443
+        },
+        {
+            "listen_port": 11223,
+            "destination": "my.domain.name:12345"
+        }
+    ]
+}
