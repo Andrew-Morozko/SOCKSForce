@@ -27,7 +27,7 @@ Usage of ./SOCKSForce:
         Configuration file (default "./config.json")
 ```
 
-Fully documented config example can be found in [config_example.json](https://github.com/Andrew-Morozko/SOCKSForce/config_example.json)
+Fully documented config example can be found in [config_example.json](https://github.com/Andrew-Morozko/SOCKSForce/blob/main/config_example.json)
 
 Minimal config:
 ```json
