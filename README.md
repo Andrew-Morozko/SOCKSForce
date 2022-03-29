@@ -2,7 +2,7 @@
 *Tool for forcing the connections through a SOCKS5 proxy.*
 
 Intended use: launch the configured SOCKSForce and override the addresses
-of the domains in /etc/hosts like so:
+of the domains in `/etc/hosts` like so:
 ```
 127.0.0.1 my.domain.name
 ```
