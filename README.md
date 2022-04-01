@@ -10,7 +10,7 @@ of the domains in `/etc/hosts` like so:
 Requests to `my.domain.name` will be received by SOCKSForce, wrapped into a SOCKS5
 connection and proxied through specified SOCKS server transparently to other programs.
 
-**NOTE**: listening on privileged ports like 80 or 443 is forbidden for non-root processes
+**NOTE**: listening on privileged ports like 80 or 443 is forbidden for non-root processes.
 Run `sudo setcap 'cap_net_bind_service=+ep' /path/to/SOCKSForce` to allow it.
 If `setcap` is unavailable you have to run `SOCKSForce` as root.
 
