@@ -1,4 +1,4 @@
-// +build !enableDebug
+//go:build !enableDebug
 
 package main
 

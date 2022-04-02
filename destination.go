@@ -70,18 +70,16 @@ func (dest *SNIDestination) GetAddr(conn net.Conn) (destinationAddr string, err 
 		},
 	).Handshake()
 
-	if !hostRead {
+	switch {
+	case !hostRead:
 		err = fmt.Errorf("failed to read TLS SNI")
-		return
-	}
-	if host == "" {
+	case host == "":
 		err = fmt.Errorf("empty TLS SNI host name")
-		return
-	}
-
-	destinationAddr = setPort(host, dest.ListenPort)
-	if DEBUG {
-		log.Printf("SNI destination: %s", destinationAddr)
+	default:
+		destinationAddr = setPort(host, dest.ListenPort)
+		if DEBUG {
+			log.Printf("SNI destination: %s", destinationAddr)
+		}
 	}
 	return
 }

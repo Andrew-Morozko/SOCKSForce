@@ -80,7 +80,6 @@ func handleConnection(wg *sync.WaitGroup, route *RouteConfig, conn net.Conn) {
 			}
 			conn.Close()
 		}
-
 	}()
 
 	roConn := &roconn.RoConn{
@@ -113,11 +112,8 @@ func handleConnection(wg *sync.WaitGroup, route *RouteConfig, conn net.Conn) {
 		} else {
 			log.Printf("Route #%d: proxying failed: %s", route.Num, err)
 		}
-		return
 	}
 }
-
-type handlerFunc func(net.Conn)
 
 func acceptAndHandle(wg *sync.WaitGroup, l net.Listener, route *RouteConfig) {
 	defer wg.Done()
@@ -135,7 +131,7 @@ func acceptAndHandle(wg *sync.WaitGroup, l net.Listener, route *RouteConfig) {
 var forcedShutdown = errors.New("forced shutdown")
 
 func multiProxyServer(routes []*RouteConfig) (err error) {
-	signalC := make(chan os.Signal, 1)
+	signalC := make(chan os.Signal, 2)
 	signal.Notify(signalC, os.Interrupt)
 	wg := new(sync.WaitGroup)
 
